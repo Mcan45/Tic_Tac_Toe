@@ -21,6 +21,15 @@ def display_board():
 # play game
 # check is player or computer win
 # check is board full
+
+
+def check_if_full():
+    if " " not in board:
+        return True
+    return False
 # handle turn
 
-display_board()
+if __name__ == "__main__":
+    print("Welcome to Tic Tac Toe!\n")
+    display_board()
+    print(check_if_full())
