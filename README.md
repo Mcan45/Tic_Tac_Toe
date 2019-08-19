@@ -12,6 +12,7 @@ Game is played on 3x3 square
  4 | 5 | 6
 -----------
  7 | 8 | 9
+-----------
 
 
 when you run the game firstly you should choose your sign(X or O) and your goal is to make a straight line on a row, column or on a diagonal and computers too.
