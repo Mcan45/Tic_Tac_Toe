@@ -1,4 +1,5 @@
 import random
+import time
 # board
 board = [str(i) for i in range(10)]
 
@@ -163,3 +164,9 @@ if __name__ == "__main__":
         print("---------------------")
 
         play_game()
+        print("Press q for quit game")
+        quit = input("Any key for continue")
+        if quit == "q" or quit == "Q":
+            print("Quitting...")
+            time.sleep(2)
+            break
