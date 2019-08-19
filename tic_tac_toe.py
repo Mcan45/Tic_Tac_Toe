@@ -1,5 +1,6 @@
 import random
 import time
+
 # board
 board = [str(i) for i in range(10)]
 
@@ -41,22 +42,143 @@ def display_board():
     print(" " + board[7] + " | " + board[8] + " | " + board[9])
 
 
+# make the winner move
+def get_winner_pos():
+    winner_pos = []
+    if board[1] == " " and board[2] == c_sign and board[3] == c_sign:
+        winner_pos.append(1)
+    if board[1] == " " and board[4] == c_sign and board[5] == c_sign:
+        winner_pos.append(1)
+    if board[1] == " " and board[5] == c_sign and board[9] == c_sign:
+        winner_pos.append(1)
+    if board[2] == " " and board[1] == c_sign and board[3] == c_sign:
+        winner_pos.append(2)
+    if board[2] == " " and board[5] == c_sign and board[8] == c_sign:
+        winner_pos.append(2)
+    if board[3] == " " and board[1] == c_sign and board[2] == c_sign:
+        winner_pos.append(3)
+    if board[3] == " " and board[6] == c_sign and board[9] == c_sign:
+        winner_pos.append(3)
+    if board[3] == " " and board[5] == c_sign and board[7] == c_sign:
+        winner_pos.append(3)
+    if board[4] == " " and board[1] == c_sign and board[7] == c_sign:
+        winner_pos.append(4)
+    if board[4] == " " and board[5] == c_sign and board[6] == c_sign:
+        winner_pos.append(4)
+    if board[5] == " " and board[1] == c_sign and board[9] == c_sign:
+        winner_pos.append(5)
+    if board[5] == " " and board[2] == c_sign and board[8] == c_sign:
+        winner_pos.append(5)
+    if board[5] == " " and board[3] == c_sign and board[7] == c_sign:
+        winner_pos.append(5)
+    if board[5] == " " and board[4] == c_sign and board[6] == c_sign:
+        winner_pos.append(5)
+    if board[6] == " " and board[3] == c_sign and board[9] == c_sign:
+        winner_pos.append(6)
+    if board[6] == " " and board[4] == c_sign and board[5] == c_sign:
+        winner_pos.append(6)
+    if board[7] == " " and board[1] == c_sign and board[4] == c_sign:
+        winner_pos.append(7)
+    if board[7] == " " and board[3] == c_sign and board[5] == c_sign:
+        winner_pos.append(7)
+    if board[7] == " " and board[8] == c_sign and board[9] == c_sign:
+        winner_pos.append(7)
+    if board[8] == " " and board[2] == c_sign and board[5] == c_sign:
+        winner_pos.append(8)
+    if board[8] == " " and board[7] == c_sign and board[9] == c_sign:
+        winner_pos.append(8)
+    if board[9] == " " and board[1] == c_sign and board[5] == c_sign:
+        winner_pos.append(9)
+    if board[9] == " " and board[3] == c_sign and board[6] == c_sign:
+        winner_pos.append(9)
+    if board[9] == " " and board[7] == c_sign and board[8] == c_sign:
+        winner_pos.append(9)
+
+    return winner_pos
+
+
+# make the blocker move
+def get_blocker_pos():
+    blocker_pos = []
+    if board[1] == " " and board[2] == g_sign and board[3] == g_sign:
+        blocker_pos.append(1)
+    if board[1] == " " and board[4] == g_sign and board[5] == g_sign:
+        blocker_pos.append(1)
+    if board[1] == " " and board[5] == g_sign and board[9] == g_sign:
+        blocker_pos.append(1)
+    if board[2] == " " and board[1] == g_sign and board[3] == g_sign:
+        blocker_pos.append(2)
+    if board[2] == " " and board[5] == g_sign and board[8] == g_sign:
+        blocker_pos.append(2)
+    if board[3] == " " and board[1] == g_sign and board[2] == g_sign:
+        blocker_pos.append(3)
+    if board[3] == " " and board[6] == g_sign and board[9] == g_sign:
+        blocker_pos.append(3)
+    if board[3] == " " and board[5] == g_sign and board[7] == g_sign:
+        blocker_pos.append(3)
+    if board[4] == " " and board[1] == g_sign and board[7] == g_sign:
+        blocker_pos.append(4)
+    if board[4] == " " and board[5] == g_sign and board[6] == g_sign:
+        blocker_pos.append(4)
+    if board[5] == " " and board[1] == g_sign and board[9] == g_sign:
+        blocker_pos.append(5)
+    if board[5] == " " and board[2] == g_sign and board[8] == g_sign:
+        blocker_pos.append(5)
+    if board[5] == " " and board[3] == g_sign and board[7] == g_sign:
+        blocker_pos.append(5)
+    if board[5] == " " and board[4] == g_sign and board[6] == g_sign:
+        blocker_pos.append(5)
+    if board[6] == " " and board[3] == g_sign and board[9] == g_sign:
+        blocker_pos.append(6)
+    if board[6] == " " and board[4] == g_sign and board[5] == g_sign:
+        blocker_pos.append(6)
+    if board[7] == " " and board[1] == g_sign and board[4] == g_sign:
+        blocker_pos.append(7)
+    if board[7] == " " and board[3] == g_sign and board[5] == g_sign:
+        blocker_pos.append(7)
+    if board[7] == " " and board[8] == g_sign and board[9] == g_sign:
+        blocker_pos.append(7)
+    if board[8] == " " and board[2] == g_sign and board[5] == g_sign:
+        blocker_pos.append(8)
+    if board[8] == " " and board[7] == g_sign and board[9] == g_sign:
+        blocker_pos.append(8)
+    if board[9] == " " and board[1] == g_sign and board[5] == g_sign:
+        blocker_pos.append(9)
+    if board[9] == " " and board[3] == g_sign and board[6] == g_sign:
+        blocker_pos.append(9)
+    if board[9] == " " and board[7] == g_sign and board[8] == g_sign:
+        blocker_pos.append(9)
+
+    return blocker_pos
+
+
 # computer plays game
 def computer_play():
     print("Computer is playing...")
     random_second = random.randint(0, 3)
     time.sleep(random_second)
 
-    # plays randomly from corners
-    if len(possible_corners) > 0:
-        computer_move = random.choice(possible_corners)
-        possible_corners.remove(computer_move)
-    elif len(possible_middle) > 0:
-        computer_move = 5
-        possible_middle.remove(computer_move)
-    elif len(possible_edges) > 0:
-        computer_move = random.choice(possible_edges)
-        possible_edges.remove(computer_move)
+    winner_moves = get_winner_pos()
+    blocker_moves = get_blocker_pos()
+
+    if len(winner_moves) > 0:
+        computer_move = random.choice(winner_moves)
+
+    elif len(blocker_moves) > 0:
+        computer_move = random.choice(blocker_moves)
+
+    else:
+
+        # plays randomly from corners
+        if len(possible_corners) > 0:
+            computer_move = random.choice(possible_corners)
+            possible_corners.remove(computer_move)
+        elif len(possible_middle) > 0:
+            computer_move = 5
+            possible_middle.remove(computer_move)
+        elif len(possible_edges) > 0:
+            computer_move = random.choice(possible_edges)
+            possible_edges.remove(computer_move)
 
     print("Computer moved:", computer_move)
     board[computer_move] = c_sign
@@ -64,16 +186,34 @@ def computer_play():
 
 # gamer plays
 def gamer_play():
-    print("Your turn!")
-    gamer_move = int(input("Your move: "))
-    board[gamer_move] = g_sign
-    if gamer_move in [1, 3, 7, 9]:
-        possible_corners.remove(gamer_move)
-    elif gamer_move == 5:
-        possible_middle.remove(gamer_move)
-    elif gamer_move in [2, 4, 6, 8]:
-        possible_edges.remove(gamer_move)
-    print("---------------------")
+
+    while True:
+        print("Your turn!")
+        gamer_move = input("Your move: ")
+
+        # if numeric
+        if gamer_move in [str(i) for i in range(1, 10)]:
+            gamer_move = int(gamer_move)
+
+            # if move is played before
+            if gamer_move not in possible_corners and gamer_move not in possible_middle and gamer_move not in possible_edges:
+                print("Impossible move!")
+
+            # if move is appropirate play regularly
+            else:
+                board[gamer_move] = g_sign
+                if gamer_move in [1, 3, 7, 9]:
+                    possible_corners.remove(gamer_move)
+                elif gamer_move == 5:
+                    possible_middle.remove(gamer_move)
+                elif gamer_move in [2, 4, 6, 8]:
+                    possible_edges.remove(gamer_move)
+                print("---------------------")
+                break
+
+        # if not numeric
+        else:
+            print("Press [1-9]")
 
 
 # check if board is full
@@ -139,22 +279,25 @@ def check_if_gamer_win():
 # play game
 def play_game():
     while True:
-        if check_if_board_is_full():
-            print("Tie!")
-            break
+
         computer_play()
+        display_board()
         if check_if_computer_win():
-            display_board()
             print("Computer win!")
             break
-        display_board()
+        if check_if_board_is_full():
+            print("Tie!")
         gamer_play()
+        display_board()
         if check_if_gamer_win():
-            display_board()
             print("Congratulations, you win!")
             break
+        if check_if_board_is_full():
+            print("Tie!")
+
 
 if __name__ == "__main__":
+
     while True:
         print("-------------------")
         print("Welcome to Tic Tac Toe!\n")
@@ -188,7 +331,7 @@ if __name__ == "__main__":
 
         play_game()
         print("Press q for quit game")
-        quit = input("Any key for continue: ")
+        quit = input("any key for continue: ")
         if quit == "q" or quit == "Q":
             print("Quitting...")
             time.sleep(1)
