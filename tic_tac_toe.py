@@ -1,5 +1,6 @@
 import random
 import time
+import os
 
 # board
 board = [str(i) for i in range(10)]
@@ -155,7 +156,7 @@ def get_blocker_pos():
 # computer plays game
 def computer_play():
     print("Computer is playing...")
-    random_second = random.randint(0, 3)
+    random_second = random.randint(0, 2)
     time.sleep(random_second)
 
     winner_moves = get_winner_pos()
@@ -163,10 +164,21 @@ def computer_play():
 
     if len(winner_moves) > 0:
         computer_move = random.choice(winner_moves)
+        if computer_move in possible_corners:
+            possible_corners.remove(computer_move)
+        elif computer_move in possible_middle:
+            possible_middle.remove(computer_move)
+        else:
+            possible_edges.remove(computer_move)
 
     elif len(blocker_moves) > 0:
         computer_move = random.choice(blocker_moves)
-
+        if computer_move in possible_corners:
+            possible_corners.remove(computer_move)
+        elif computer_move in possible_middle:
+            possible_middle.remove(computer_move)
+        else:
+            possible_edges.remove(computer_move)
     else:
 
         # plays randomly from corners
@@ -279,7 +291,7 @@ def check_if_gamer_win():
 # play game
 def play_game():
     while True:
-
+        cls()
         computer_play()
         display_board()
         if check_if_computer_win():
@@ -287,6 +299,7 @@ def play_game():
             break
         if check_if_board_is_full():
             print("Tie!")
+            break
         gamer_play()
         display_board()
         if check_if_gamer_win():
@@ -294,6 +307,11 @@ def play_game():
             break
         if check_if_board_is_full():
             print("Tie!")
+
+
+# clean the console
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 if __name__ == "__main__":
@@ -330,8 +348,8 @@ if __name__ == "__main__":
         print("---------------------")
 
         play_game()
-        print("Press q for quit game")
-        quit = input("any key for continue: ")
+        print("Press q to quit game")
+        quit = input("any key to continue: ")
         if quit == "q" or quit == "Q":
             print("Quitting...")
             time.sleep(1)
