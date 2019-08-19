@@ -40,6 +40,10 @@ def display_board():
 
 # computer plays game
 def computer_play():
+    print("Computer is playing...")
+    random_second = random.randint(0, 3)
+    time.sleep(random_second)
+
     computer_move = random.choice(possible_moves)
     print("Computer moved:", computer_move)
     board[computer_move] = c_sign
@@ -165,8 +169,8 @@ if __name__ == "__main__":
 
         play_game()
         print("Press q for quit game")
-        quit = input("Any key for continue")
+        quit = input("Any key for continue: ")
         if quit == "q" or quit == "Q":
             print("Quitting...")
-            time.sleep(2)
+            time.sleep(1)
             break
