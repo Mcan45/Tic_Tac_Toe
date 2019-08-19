@@ -6,7 +6,10 @@ board = [str(i) for i in range(10)]
 board[0] = "!"  # we won't use it
 
 # possible moves
-possible_moves = [i for i in range(1, 10)]
+possible_corners = [1, 3, 7, 9]
+possible_middle = [5]
+possible_edges = [2, 4, 6, 8]
+
 # computer sign
 c_sign = "X"
 
@@ -44,10 +47,19 @@ def computer_play():
     random_second = random.randint(0, 3)
     time.sleep(random_second)
 
-    computer_move = random.choice(possible_moves)
+    # plays randomly from corners
+    if len(possible_corners) > 0:
+        computer_move = random.choice(possible_corners)
+        possible_corners.remove(computer_move)
+    elif len(possible_middle) > 0:
+        computer_move = 5
+        possible_middle.remove(computer_move)
+    elif len(possible_edges) > 0:
+        computer_move = random.choice(possible_edges)
+        possible_edges.remove(computer_move)
+
     print("Computer moved:", computer_move)
     board[computer_move] = c_sign
-    possible_moves.remove(computer_move)
 
 
 # gamer plays
@@ -55,7 +67,12 @@ def gamer_play():
     print("Your turn!")
     gamer_move = int(input("Your move: "))
     board[gamer_move] = g_sign
-    possible_moves.remove(gamer_move)
+    if gamer_move in [1, 3, 7, 9]:
+        possible_corners.remove(gamer_move)
+    elif gamer_move == 5:
+        possible_middle.remove(gamer_move)
+    elif gamer_move in [2, 4, 6, 8]:
+        possible_edges.remove(gamer_move)
     print("---------------------")
 
 
@@ -147,7 +164,9 @@ if __name__ == "__main__":
         board[0] = "!"  # we won't use it
 
         # possible moves
-        possible_moves = [i for i in range(1, 10)]
+        possible_corners = [1, 3, 7, 9]
+        possible_middle = [5]
+        possible_edges = [2, 4, 6, 8]
         # computer sign
         c_sign = "X"
 
