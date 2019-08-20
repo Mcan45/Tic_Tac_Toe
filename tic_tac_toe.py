@@ -2,21 +2,11 @@ import random
 import time
 import os
 
-# board
-board = [str(i) for i in range(10)]
-
-board[0] = "!"  # we won't use it
-
-# possible moves
-possible_corners = [1, 3, 7, 9]
-possible_middle = [5]
-possible_edges = [2, 4, 6, 8]
-
 # computer sign
-c_sign = "X"
+c_sign = ""
 
 # gamer sign
-g_sign = "O"
+g_sign = ""
 
 
 # handle sign
@@ -291,7 +281,7 @@ def check_if_gamer_win():
 # play game
 def play_game():
     while True:
-        cls()
+
         computer_play()
         display_board()
         if check_if_computer_win():
@@ -317,8 +307,10 @@ def cls():
 if __name__ == "__main__":
 
     while True:
+        cls()
         print("-------------------")
         print("Welcome to Tic Tac Toe!\n")
+
         # board
         board = [str(i) for i in range(10)]
 
@@ -328,21 +320,22 @@ if __name__ == "__main__":
         possible_corners = [1, 3, 7, 9]
         possible_middle = [5]
         possible_edges = [2, 4, 6, 8]
-        # computer sign
-        c_sign = "X"
 
-        # gamer sign
-        g_sign = "O"
         signs = handle_sign()
+        # gamer sign
 
         g_sign = signs[0]
+        # computer sign
         c_sign = signs[1]
-        print("You are:", g_sign)
-        print("Computer is:", c_sign)
 
         display_board()
         # clean the board after display
         board[1:] = [" " for i in range(9)]
+
+        print("You are:", g_sign)
+        print("Computer is:", c_sign)
+
+        display_board()
 
         print("Do your move between 1-9")
         print("---------------------")
