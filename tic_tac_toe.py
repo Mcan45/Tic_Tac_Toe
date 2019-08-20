@@ -2,12 +2,6 @@ import random
 import time
 import os
 
-# computer sign
-c_sign = ""
-
-# gamer sign
-g_sign = ""
-
 
 # handle sign
 def handle_sign():
