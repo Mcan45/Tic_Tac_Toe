@@ -329,8 +329,6 @@ if __name__ == "__main__":
         print("You are:", g_sign)
         print("Computer is:", c_sign)
 
-        display_board()
-
         print("Do your move between 1-9")
         print("---------------------")
 
