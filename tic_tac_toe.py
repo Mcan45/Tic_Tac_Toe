@@ -32,7 +32,7 @@ def get_winner_pos():
     winner_pos = []
     if board[1] == " " and board[2] == c_sign and board[3] == c_sign:
         winner_pos.append(1)
-    if board[1] == " " and board[4] == c_sign and board[5] == c_sign:
+    if board[1] == " " and board[4] == c_sign and board[7] == c_sign:
         winner_pos.append(1)
     if board[1] == " " and board[5] == c_sign and board[9] == c_sign:
         winner_pos.append(1)
@@ -87,7 +87,7 @@ def get_blocker_pos():
     blocker_pos = []
     if board[1] == " " and board[2] == g_sign and board[3] == g_sign:
         blocker_pos.append(1)
-    if board[1] == " " and board[4] == g_sign and board[5] == g_sign:
+    if board[1] == " " and board[4] == g_sign and board[7] == g_sign:
         blocker_pos.append(1)
     if board[1] == " " and board[5] == g_sign and board[9] == g_sign:
         blocker_pos.append(1)
@@ -145,6 +145,8 @@ def computer_play():
 
     winner_moves = get_winner_pos()
     blocker_moves = get_blocker_pos()
+    print("winner_moves", winner_moves)
+    print("blocker_moves", blocker_moves)
 
     if len(winner_moves) > 0:
         computer_move = random.choice(winner_moves)
